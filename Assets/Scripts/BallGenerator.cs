@@ -1,5 +1,6 @@
 using System;
 using Unity.VisualScripting;
+using UnityEditor.Experimental.GraphView;
 using UnityEditor.ShaderGraph;
 using UnityEngine;
 using UnityEngine.Rendering.Universal.Internal;
@@ -7,46 +8,52 @@ using UnityEngine.UIElements;
 
 public class BallGenerator : MonoBehaviour
 {
-    [SerializeField] BackgroundScaler backgroundScalar;
-    [SerializeField] GameObject redball;
+    [SerializeField] ScreenManager2D backgroundScalar;
+    [SerializeField] GameObject[] balls;
+    
+
     private float screenWidth;
     private float screenHeight;
+    private const float bottomOffset = -5f;
 
+    [Header("Ball Spawning Control Center")]
     [SerializeField] float minHeight = 0f;
     [SerializeField] float maxHeight = 0f;
-    [SerializeField] float minDirection = -3f;
-    [SerializeField] float maxDirection = 3f;
+    [SerializeField] float directionClamp = 2f;
+
+    [SerializeField] float edgeOffset = 0f;
 
 
-    private const float bottomOffset = -5f;
     void Start()
     {
-        float screenWidth = backgroundScalar.getWidth();
-        float screenHeight = backgroundScalar.getHeight();
+        float screenWidth = backgroundScalar.GetWidth();
+        float screenHeight = backgroundScalar.GetHeight();
+
+
     }
 
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            spawnBall(redball);
+            SpawnBall(balls[UnityEngine.Random.Range(0, balls.Length)]);
         }
     }
 
-    void spawnBall(GameObject ball)
+    void SpawnBall(GameObject ball)
     {
         GameObject ballPrefab = Instantiate(ball);
 
-        float xPos = randomWidthPos();
+        float xPos = RandomWidthPosition();
 
         ballPrefab.transform.position = new Vector3(xPos, screenHeight + bottomOffset, 0f);
 
         Rigidbody rb = ballPrefab.GetComponent<Rigidbody>();
 
-        if(rb != null)
+        if (rb != null)
         {
-            float upForce = UnityEngine.Random.Range(minHeight, maxHeight); 
-            float sideForce = UnityEngine.Random.Range(minDirection, maxDirection); 
+            float upForce = UnityEngine.Random.Range(minHeight, maxHeight);
+            float sideForce = UnityEngine.Random.Range(-directionClamp, directionClamp);
 
             Vector3 force = new Vector3(sideForce, upForce, 0f);
 
@@ -55,11 +62,11 @@ public class BallGenerator : MonoBehaviour
             rb.AddTorque(UnityEngine.Random.insideUnitSphere * 4f, ForceMode.Impulse);
         }
 
-        
+
     }
 
-    private float randomWidthPos()
+    private float RandomWidthPosition()
     {
-        return UnityEngine.Random.Range(backgroundScalar.getLeftScreen(), backgroundScalar.getRightScreen());
+        return UnityEngine.Random.Range(backgroundScalar.getLeftScreen() + edgeOffset, backgroundScalar.getRightScreen() - edgeOffset);
     }
 }

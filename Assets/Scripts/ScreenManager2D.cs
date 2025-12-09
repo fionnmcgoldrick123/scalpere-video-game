@@ -1,9 +1,8 @@
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class BackgroundScaler : MonoBehaviour
+public class ScreenManager2D : MonoBehaviour
 {
-
     private float width;
     private float height;
     Camera cam;
@@ -21,12 +20,12 @@ public class BackgroundScaler : MonoBehaviour
         transform.localScale = new Vector3(width, height + magicHeightFix, 1);
     }
 
-    public float getWidth()
+    public float GetWidth()
     {
         return width;
     }
 
-    public float getHeight()
+    public float GetHeight()
     {
         return height;
     }

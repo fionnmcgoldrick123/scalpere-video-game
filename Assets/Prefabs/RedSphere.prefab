@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4748829465128750526}
   - component: {fileID: 2233592720995466154}
   m_Layer: 0
-  m_Name: PrefabSphere
+  m_Name: RedSphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

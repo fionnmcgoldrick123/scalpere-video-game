@@ -1,15 +1,14 @@
-using Unity.VisualScripting;
 using UnityEngine;
 
-public class RedBall : MonoBehaviour, IBall 
+public class BlueBall : MonoBehaviour, IBall
 {
-
-    Color ballColor = Color.red;
+    Color ballColor = Color.cyan;
 
     private void Start()
     {
         GetComponent<Renderer>().material.SetColor("_BaseColor", ballColor);
     }
+
     public void move()
     {
         Debug.Log("moves");
