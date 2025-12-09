@@ -6,17 +6,24 @@ public class RedBall : MonoBehaviour, IBall
 
     Color ballColor = Color.red;
 
+    private const int value = 15;
+
     private void Start()
     {
         GetComponent<Renderer>().material.SetColor("_BaseColor", ballColor);
     }
-    public void move()
+    public void Move()
     {
         Debug.Log("moves");
     }
 
-    public void die()
+    public void Die()
     {
         Debug.Log("die");
+    }
+
+    public int GetValue()
+    {
+        return value;
     }
 }

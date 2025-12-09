@@ -23,16 +23,7 @@ public class BallGenerator : MonoBehaviour
 
     [SerializeField] float edgeOffset = 0f;
 
-
-    void Start()
-    {
-        float screenWidth = backgroundScalar.GetWidth();
-        float screenHeight = backgroundScalar.GetHeight();
-
-
-    }
-
-    void Update()
+    private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
@@ -40,7 +31,7 @@ public class BallGenerator : MonoBehaviour
         }
     }
 
-    void SpawnBall(GameObject ball)
+    private void SpawnBall(GameObject ball)
     {
         GameObject ballPrefab = Instantiate(ball);
 
