@@ -4,7 +4,10 @@ using UnityEngine;
 public class MoneyManager : MonoBehaviour
 {
     public static MoneyManager Instance { get; private set; }
-    private float mult = 0f;
+
+    [SerializeField] private MoneyUIManager moneyUIManager;
+
+    private static int currentMoney = 0;
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -16,14 +19,15 @@ public class MoneyManager : MonoBehaviour
         Instance = this;
     }
 
+    private void Start()
+    {
+        currentMoney = 0;
+    }
     public static void AssignMoney(int ballValue)
     {
         Debug.Log("MONEY EARNED: " + ballValue);
-    }
-
-    public static void ApplyMult()
-    {
-        //TODO: cool ideas with money mult
+        currentMoney += ballValue;
+        MoneyUIManager.Instance.UpdateMoneyUI(ballValue);
     }
 
 }

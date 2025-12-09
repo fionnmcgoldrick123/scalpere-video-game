@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -28,10 +29,10 @@ public class Player : MonoBehaviour
         Debug.Log("Hit: " + hit.collider.name);
 
         IBall ball = hit.collider.GetComponent<IBall>();
-        
         MoneyManager.AssignMoney(ball.GetValue());
+        
 
-
+        Destroy(hit.collider.gameObject);
     }
 
 
