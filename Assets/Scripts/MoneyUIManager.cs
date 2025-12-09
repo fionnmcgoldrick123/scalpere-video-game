@@ -44,7 +44,7 @@ public class MoneyUIManager : MonoBehaviour
          Vector3 screenPos = Camera.main.WorldToScreenPoint(worldPos);
 
          screenPos.x += Random.Range(-randomX, randomX);
-         screenPos.y += Random.Range(-randomY, randomY);
+         screenPos.y += Random.Range(0f, randomY);
 
          GameObject popup = Instantiate(popupPrefab, canvasTrans);
 
