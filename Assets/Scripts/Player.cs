@@ -1,12 +1,20 @@
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Player : MonoBehaviour
 {
+    [SerializeField] MoneySFXManager moneySFXManager;
+    [SerializeField] HealthManager healthManager;
 
     private void Update()
     {
         CheckForCollisions();
+
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            healthManager.LoseHeart(1);
+        }
     }
 
     private void CheckForCollisions()
@@ -27,6 +35,7 @@ public class Player : MonoBehaviour
     private void HandleCollision(RaycastHit hit)
     {
         Debug.Log("Hit: " + hit.collider.name);
+        moneySFXManager.PlayMoneyBag();
 
         IBall ball = hit.collider.GetComponent<IBall>();
         MoneyManager.AssignMoney(ball.GetValue());
