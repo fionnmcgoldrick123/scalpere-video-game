@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 public class CircleData
 {
-    public float size; 
+    public float size;
     public float launchForce;
     public float baseSpeed;
 

@@ -13,6 +13,8 @@ public class Circle : MonoBehaviour
 
     public int scoreValue;
 
+    public LocationType locationType;
+
     void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
