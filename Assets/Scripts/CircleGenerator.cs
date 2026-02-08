@@ -1,17 +1,21 @@
-using System;
-using System.Collections.Generic;
-using NUnit.Framework;
 using UnityEngine;
+using System.Collections.Generic;
+
 public class CircleGenerator : MonoBehaviour
 {
-
-    [SerializeField] private ICircle[] circles; 
-    public ICircle getRandomCircle()
+    public CircleData GenerateCircleData()
     {
-        //TODO:  Method that handles luck weights
+        CircleData data = new CircleData
+        {
+            size = Random.Range(0.5f, 1.5f),
+            launchForce = Random.Range(5f, 15f),
+            baseSpeed = Random.Range(1f, 5f),
+            health = Random.Range(1, 5),
+            scoreValue = Random.Range(10, 50),
+            abilityType = new List<AbilityType> { AbilityType.None }, // Placeholder for abilities
+            locationType = LocationType.Base // Placeholder for location type
+        };
 
-        int index = UnityEngine.Random.Range(0, circles.Length);
-        ICircle circle = circles[index];
-        return circle;
+        return data;
     }
 }
